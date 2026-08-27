@@ -60,7 +60,7 @@ export default function Home() {
       <aside className="left-rail" aria-label="知识库目录">
         <p className="rail-kicker">知识库</p>
         <a className="rail-home" href="#top"><span>◇</span> 大模型时代</a>
-        <div className="rail-group"><p>00 · 数学与记号规范</p><a href="/foundations/tensor-notation">向量、矩阵与 Token 轴</a></div>
+        <div className="rail-group"><p>00 · 数学与记号规范</p><a href="/foundations/tensor-notation">向量、矩阵与 Token 轴</a><span className="rail-subhead">概率、采样与估计</span><a href="/foundations/importance-sampling">Importance Sampling</a></div>
         <div className="rail-group">
           <p>01 · 模型与架构</p>
           <a className="selected" href="#top">Qwen 系列演进</a>
@@ -72,6 +72,8 @@ export default function Home() {
           <p>02 · 训练与对齐</p><span className="rail-subhead">推理后训练</span>
           <a href="/training/long-cot-cold-start">Long-CoT Cold Start</a>
           <a href="/training/reasoning-rl">Reasoning RL</a>
+          <span className="rail-subhead">反馈与奖励</span>
+          <a href="/training/reward-model">Reward Model</a>
           <span className="rail-subhead">RL 与偏好优化</span>
           <a href="/training/rlhf">RLHF</a>
           <a href="/training/ppo">PPO</a>
@@ -80,10 +82,11 @@ export default function Home() {
           <a href="/training/grpo">GRPO</a>
           <span>Pre-training · 待更新</span>
         </div>
-        <div className="rail-group muted">
+        <div className="rail-group">
           <p>03 · Agent 与应用</p>
-          <span>Memory</span>
-          <span>Tool Use</span>
+          <a href="/agents/agent">Agent 基础</a>
+          <a href="/agents/memory">Memory</a>
+          <a href="/agents/tools">Tools</a>
         </div>
         <div className="rail-group">
           <p>04 · 标准化与归一化</p>
@@ -215,7 +218,7 @@ export default function Home() {
                 <p>Qwen2 把 GQA 普及到 Dense 系列：更多 Q heads 共享较少的 K/V heads，直接减少 KV Cache。与此同时，长上下文不再只靠“把位置编号放大”，而是把训练长度、位置外推和跨块注意力一起设计。</p>
                 <div className="version-explainer compact-explainer">
                   <div className="deep-note-grid three-notes">
-                    <article><span>GQA · MEMORY</span><b>先减少每个 token 的 KV 状态</b><p>例如 7B 使用 28 个 Q heads、4 个 KV heads；72B 使用 64 个 Q heads、8 个 KV heads。不同型号共享比例不同。</p></article>
+                    <article><span>GQA · KV CACHE</span><b>先减少每个 token 的 KV 状态</b><p>例如 7B 使用 28 个 Q heads、4 个 KV heads；72B 使用 64 个 Q heads、8 个 KV heads。不同型号共享比例不同。</p></article>
                     <article><span><a className="term-link" href="/position-encoding/dual-chunk-attention">DCA</a> · POSITION</span><b>区分块内与跨块位置</b><p><a className="term-link" href="/position-encoding/dual-chunk-attention">Dual Chunk Attention</a> 将长序列分块，在超过训练长度时仍尽量保留可学习的相对位置信息。</p></article>
                     <article><span>YARN · EXTRAPOLATION</span><b>重新标定长距离尺度</b><p>YaRN 配合 <a className="term-link" href="/position-encoding/rope">RoPE</a> 扩展推理长度；它解决位置外推，GQA 解决缓存，二者不是同一件事。</p></article>
                   </div>

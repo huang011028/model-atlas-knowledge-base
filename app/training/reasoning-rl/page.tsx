@@ -50,10 +50,10 @@ export default function ReasoningRLPage() {
       <aside className="left-rail" aria-label="知识库目录">
         <p className="rail-kicker">知识库</p>
         <a className="rail-home" href="/"><span>◇</span> 大模型时代</a>
-        <div className="rail-group"><p>00 · 数学与记号规范</p><a href="/foundations/tensor-notation">向量、矩阵与 Token 轴</a></div>
+        <div className="rail-group"><p>00 · 数学与记号规范</p><a href="/foundations/tensor-notation">向量、矩阵与 Token 轴</a><span className="rail-subhead">概率、采样与估计</span><a href="/foundations/importance-sampling">Importance Sampling</a></div>
         <div className="rail-group"><p>01 · 模型与架构</p><a href="/">Qwen 系列演进</a><a href="/architecture/decoder-only">Decoder-only Transformer</a><a className="locked" href="#">DeepSeek 系列演进 <em>待更新</em></a><a className="locked" href="#">Llama 系列演进 <em>待更新</em></a></div>
-        <div className="rail-group"><p>02 · 训练与对齐</p><span className="rail-subhead">推理后训练</span><a href="/training/long-cot-cold-start">Long-CoT Cold Start</a><a className="selected" href="/training/reasoning-rl">Reasoning RL</a><span className="rail-subhead">RL 与偏好优化</span><a href="/training/rlhf">RLHF</a><a href="/training/ppo">PPO</a><a href="/training/dpo">DPO</a><a href="/training/kto">KTO</a><a href="/training/grpo">GRPO</a><span>Pre-training · 待更新</span></div>
-        <div className="rail-group muted"><p>03 · Agent 与应用</p><span>Memory</span><span>Tool Use</span></div>
+        <div className="rail-group"><p>02 · 训练与对齐</p><span className="rail-subhead">推理后训练</span><a href="/training/long-cot-cold-start">Long-CoT Cold Start</a><a className="selected" href="/training/reasoning-rl">Reasoning RL</a><span className="rail-subhead">反馈与奖励</span><a href="/training/reward-model">Reward Model</a><span className="rail-subhead">RL 与偏好优化</span><a href="/training/rlhf">RLHF</a><a href="/training/ppo">PPO</a><a href="/training/dpo">DPO</a><a href="/training/kto">KTO</a><a href="/training/grpo">GRPO</a><span>Pre-training · 待更新</span></div>
+        <div className="rail-group"><p>03 · Agent 与应用</p><a href="/agents/agent">Agent 基础</a><a href="/agents/memory">Memory</a><a href="/agents/tools">Tools</a></div>
         <div className="rail-group"><p>04 · 标准化与归一化</p><a href="/normalization/rmsnorm">RMSNorm</a></div>
         <div className="rail-group"><p>05 · 激活函数与前馈网络</p><a href="/activations/swiglu">SwiGLU</a><a href="/ffn/moe">MoE</a></div>
         <div className="rail-group"><p>06 · 注意力机制与 KV Cache</p><a href="/attention/gqa">GQA</a><a href="/attention/qkv-bias">QKV Bias</a><a href="/attention/qk-norm">QK-Norm</a></div>
@@ -156,7 +156,7 @@ export default function ReasoningRLPage() {
           <div className="prose-heading"><span>07</span><div><p>POLICY FRESHNESS AND SYSTEMS</p><h2>On-policy、Off-policy 在 LLM Rollouts 中意味着什么？</h2></div></div>
           <p>若生成 rollouts 的行为策略就是当前正在更新的 policy，数据接近 on-policy；若训练继续复用旧策略或独立推理服务生成的样本，就出现 policy lag：</p>
           <Formula label="Behavior Policy 与 Training Policy" tex={String.raw`o\sim\mu(\cdot\mid x),\qquad \rho_t=\frac{\pi_\theta(o_t\mid x,o_{<t})}{\mu(o_t\mid x,o_{<t})}`} />
-          <p>复用样本可以提高昂贵长 rollouts 的利用率，但 <Formula inline tex={String.raw`\mu`} /> 与 <Formula inline tex={String.raw`\pi_\theta`} /> 相差太大时，importance ratios 方差增大、clip 比例上升，更新会变得偏或不稳定。</p>
+          <p>复用样本可以提高昂贵长 rollouts 的利用率，但 <Formula inline tex={String.raw`\mu`} /> 与 <Formula inline tex={String.raw`\pi_\theta`} /> 相差太大时，<a className="term-link" href="/foundations/importance-sampling">Importance Ratios</a> 方差增大、clip 比例上升，更新会变得偏或不稳定。</p>
           <div className="reason-list compact-reasons">
             <article><span>01</span><div><h3>Rollout Workers</h3><p>负责批量推理和随机采样，追求高吞吐、长输出与多个候选。</p></div></article>
             <article><span>02</span><div><h3>Verifier Workers</h3><p>解析答案、执行代码或规则校验，必须隔离不可信程序并记录失败类型。</p></div></article>
@@ -228,7 +228,7 @@ export default function ReasoningRLPage() {
 
         <footer className="article-footer">
           <div><span>继续连接知识</span><strong>从冷启动到在线 Rollouts，再继续理解 Thinking Mode Fusion、General RL 与 inference-time thinking budget。</strong></div>
-          <div className="footer-links"><a href="/training/rlhf">RLHF ↗</a><a href="/training/ppo">PPO ↗</a><a href="/training/dpo">DPO ↗</a><a href="/training/grpo">GRPO ↗</a></div>
+          <div className="footer-links"><a href="/training/reward-model">Reward Model ↗</a><a href="/training/rlhf">RLHF ↗</a><a href="/training/ppo">PPO ↗</a><a href="/training/dpo">DPO ↗</a><a href="/training/grpo">GRPO ↗</a></div>
         </footer>
       </main>
 

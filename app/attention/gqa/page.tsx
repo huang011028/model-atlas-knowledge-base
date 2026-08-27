@@ -55,7 +55,7 @@ export default function GQAPage() {
       <aside className="left-rail" aria-label="知识库目录">
         <p className="rail-kicker">知识库</p>
         <a className="rail-home" href="/"><span>◇</span> 大模型时代</a>
-        <div className="rail-group"><p>00 · 数学与记号规范</p><a href="/foundations/tensor-notation">向量、矩阵与 Token 轴</a></div>
+        <div className="rail-group"><p>00 · 数学与记号规范</p><a href="/foundations/tensor-notation">向量、矩阵与 Token 轴</a><span className="rail-subhead">概率、采样与估计</span><a href="/foundations/importance-sampling">Importance Sampling</a></div>
         <div className="rail-group">
           <p>01 · 模型与架构</p>
           <a href="/">Qwen 系列演进</a>
@@ -75,10 +75,11 @@ export default function GQAPage() {
           <a href="/training/grpo">GRPO</a>
           <span>Pre-training · 待更新</span>
         </div>
-        <div className="rail-group muted">
+        <div className="rail-group">
           <p>03 · Agent 与应用</p>
-          <span>Memory</span>
-          <span>Tool Use</span>
+          <a href="/agents/agent">Agent 基础</a>
+          <a href="/agents/memory">Memory</a>
+          <a href="/agents/tools">Tools</a>
         </div>
         <div className="rail-group">
           <p>04 · 标准化与归一化</p>
@@ -166,7 +167,7 @@ export default function GQAPage() {
         </section>
 
         <section className="prose-section" id="chapter-4">
-          <div className="prose-heading"><span>04</span><div><p>KV CACHE MEMORY</p><h2>GQA 为什么能直接减少 KV Cache？</h2></div></div>
+          <div className="prose-heading"><span>04</span><div><p>KV CACHE FOOTPRINT</p><h2>GQA 为什么能直接减少 KV Cache？</h2></div></div>
           <p>自回归解码时，历史 token 的 Key 和 Value 会被保留下来，避免每生成一个新 token 都重新计算整段历史。设 batch size 为<Formula inline tex={String.raw`B`} />，已缓存长度为<Formula inline tex={String.raw`L`} />，层数为<Formula inline tex={String.raw`N`} />，每个元素占<Formula inline tex={String.raw`s`} /> bytes，则总 KV Cache 近似为：</p>
           <Formula label="整个模型的 KV Cache" tex={String.raw`M_{\mathrm{KV}}=2NBL\,n_{kv}d_hs`} />
           <p>开头的<Formula inline tex={String.raw`2`} />来自 Key 与 Value 两份缓存。其他条件相同，Cache 大小与<Formula inline tex={String.raw`n_{kv}`} />成正比：</p>
